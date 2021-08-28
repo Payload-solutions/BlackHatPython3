@@ -32,9 +32,10 @@ def udp_connection(host: str, port: int):
     client.close()
 
 def main():
-    # tcp_connection("www.google.com", 80)
+
     try:
-        udp_connection("127.0.0.1", 9997)
+        tcp_connection("0.0.0.0", 9998)
+        # udp_connection("", 9997)
     
     except KeyboardInterrupt:
         print("[*] Exiting...")
