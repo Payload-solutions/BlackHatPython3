@@ -7,6 +7,8 @@ import sys
 from pprint import pprint
 import threading
 
+
+
 # typing zone
 type_sock = socket.socket
 
