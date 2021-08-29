@@ -26,7 +26,7 @@ def udp_connection(host: str, port: int):
     client.sendto(b"AAABBBCCC", (host, port))
 
     # at the moment to receive data, we will recive two params
-    data, addr = client.recvfrom(4096)
+    data, _ = client.recvfrom(4096)
     print(data.decode())
 
     client.close()
