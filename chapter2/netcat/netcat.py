@@ -107,7 +107,7 @@ class NetCat:
             client_socket.send(message.encode())
 
 
-        elif self.args.commad:
+        elif self.args.command:
             cmd_buffer = b''
             while True:
                 try:
