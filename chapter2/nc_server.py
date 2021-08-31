@@ -9,26 +9,33 @@ import textwrap
 import socket
 from netcat.netcat import NetCat
 
+print("""
+        ::'#####:::'##::::'##:'########:::::'###::::'##:::'##:'##::::::::'#######:::::'###::::'########::
+        :'##.. ##::. ##::'##:: ##.... ##:::'## ##:::. ##:'##:: ##:::::::'##.... ##:::'## ##::: ##.... ##:
+        '##:::: ##::. ##'##::: ##:::: ##::'##:. ##:::. ####::: ##::::::: ##:::: ##::'##:. ##:: ##:::: ##:
+         ##:::: ##:::. ###:::: ########::'##:::. ##:::. ##:::: ##::::::: ##:::: ##:'##:::. ##: ##:::: ##:
+         ##:::: ##::: ## ##::: ##.....::: #########:::: ##:::: ##::::::: ##:::: ##: #########: ##:::: ##:
+        . ##:: ##::: ##:. ##:: ##:::::::: ##.... ##:::: ##:::: ##::::::: ##:::: ##: ##.... ##: ##:::: ##:
+        :. #####::: ##:::. ##: ##:::::::: ##:::: ##:::: ##:::: ########:. #######:: ##:::: ##: ########::
+        ::.....::::..:::::..::..:::::::::..:::::..:::::..:::::........:::.......:::..:::::..::........:::
 
-def execute(cmd: str):
-    cmd = cmd.strip()
-    if not cmd:
-        return
-    output = subprocess.check_output(shlex.split(cmd),
-                            stderr=subprocess.STDOUT)
-    return output.decode()
-
+        owner: payload
+""")
 
 
 def main():
     parser = argparse.ArgumentParser(description="Black hat python tool",
                                     formatter_class=argparse.RawDescriptionHelpFormatter,
                                     epilog=textwrap.dedent('''Example:
-                                    netcat.py -t 192.168.1.108 -p 5555 -l -c # command shell
-                                    netcat.py -t 192.168.1.108 -p 5555 -l -u=mytest.txt # upload to file
-                                    netcat.py -t 192.168.1.108 -p 5555 -l -e=\"cat /etc/passwd\" # execute command
-                                    echo 'ABC' | ./netcat.py -t 192.168.1.108 -p 135 # echo text to server port 135
-                                    netcat.py -t 192.168.1.108 -p 5555 # connect to server
+        ============================================================================== 
+
+        netcat.py -t 192.168.1.108 -p 5555 -l -c # command shell
+        netcat.py -t 192.168.1.108 -p 5555 -l -u=mytest.txt # upload to file
+        netcat.py -t 192.168.1.108 -p 5555 -l -e=\"cat /etc/passwd\" # execute command
+        echo 'ABC' | ./netcat.py -t 192.168.1.108 -p 135 # echo text to server port 135
+        netcat.py -t 192.168.1.108 -p 5555 # connect to server
+
+        ==============================================================================
                                     '''))
 
     parser.add_argument('-c', '--command', action="store_true", help="command shell")
