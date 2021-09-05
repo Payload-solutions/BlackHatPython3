@@ -21,10 +21,6 @@ def execute(cmd: str) -> Any:
     return output.decode()
 
 
-
-
-
-
 class NetCat:
 
     def __init__(self, args, buffer=None) -> None:
