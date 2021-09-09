@@ -21,7 +21,8 @@ def main():
     else:
         socket_protocol = socket.IPPROTO_ICMP
 
-    sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket_protocol)
+    sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, 
+        socket_protocol)
     sniffer.bind((HOST, 0))
 
     # include the IP header in the capture
